@@ -38,8 +38,11 @@ html, body {
   font-weight: bold;
   text-transform: uppercase;
   position: absolute;
-  top: 150px;
-  left: -109px;
+  /* top: 150px;
+  left: -109px; */
+
+  top: 70px;
+  left: -105px;
   border-radius: 15px 15px 0 0;
   transform: rotate(270deg);
   padding: 5px 15px;
@@ -230,6 +233,8 @@ form .input-field{
   margin: auto;
   display: flex;
   justify-content: center;
+  margin-left: 45px;
+  margin-right: 10px;
 }
 .img-small{
   max-width: 4rem !important;
@@ -279,6 +284,8 @@ form .input-field{
   z-index: -1;
   background: var(--secondary);
 }
+
+
 
 .submittedForm{
   text-align: center;
