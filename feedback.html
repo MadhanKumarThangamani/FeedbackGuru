@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Feedback Guru</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" href="/css/main.css" rel="stylesheet">
+  <link type="text/css" href="/css/snow.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div id="submitted-card" class="submittedForm hide">
+  <!-- <div class="logo-1">
+    <img src="/img/guru.png" class="img-x-small" alt="session thumb">
+    <span class="primary" >Feedback </span><span class="secondary" >Guru</span>
+  </div> -->
+  <img src="/img/submitted.png" class="img" alt="session thumb">
+</div>
+  <div class="feedback-main">
+  <div id="feedback-card" class="shadow shadow-5 card-panel feedback white row hide">
+    <div class="logo">
+      <img src="/img/guru.png" class="img-x-small" alt="session thumb">
+      <span class="primary" >Feedback </span><span class="secondary" >Guru</span>
+    </div>
+    <div id="current-session">
+      <div class="card-panel session " data-id="${key}">
+        <img src="/img/default-1.png" class="img-small" alt="session thumb">
+        <div class="session-details">
+          <div id="sessionTitle" class="session-title"></div>
+          <span id="sessionPresenter" class="session-leader"></span>
+          <span id="sessionLocation" class="session-location"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row bottomZero">
+      <div class="col s12">
+        <div class="center top20">
+          <!-- Feedback Sections -->
+          <div class="feedback-section" data-category="Communication">
+            <div class="card feedback-card horizontal shadow shadow-2">
+              <div class="card-stacked">
+                <div class="card-content feedback-header">
+                  <p>Communication</p>
+                </div>
+                <div class="card-action stars">
+                  <!-- Stars will be rendered dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-section" data-category="Technology">
+            <div class="card feedback-card horizontal shadow shadow-2">
+              <div class="card-stacked">
+                <div class="card-content feedback-header">
+                  <p>Technology</p>
+                </div>
+                <div class="card-action stars"></div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-section" data-category="Presentation">
+            <div class="card feedback-card horizontal shadow shadow-2">
+              <div class="card-stacked">
+                <div class="card-content feedback-header">
+                  <p>Presentation</p>
+                </div>
+                <div class="card-action stars"></div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-section" data-category="Interactive">
+            <div class="card feedback-card horizontal shadow shadow-2">
+              <div class="card-stacked">
+                <div class="card-content feedback-header">
+                  <p>Interactive</p>
+                </div>
+                <div class="card-action stars"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row bottomZero">
+      <form id="feedback-form" class="col s12" >
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" type="text" class="validate">
+            <label for="name">Your Name (optional)</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">comment</i>
+            <textarea id="comment" class="materialize-textarea"></textarea>
+            <label for="comment">Comments</label>
+          </div>
+        </div>
+        <div class="right">
+          <button class="btn-floating  btn-large  pulse submit-btn" id="addSession" type="submit">
+            <i class="material-icons submit-btn-icon">sentiment_very_satisfied</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <canvas id="canvas"></canvas>
+
+  <script type="module" src="/js/feedback.js" ></script>
+  <script src="/js/snow.js"> </script>
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

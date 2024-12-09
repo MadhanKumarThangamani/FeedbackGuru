@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Feedback Guru</title>
+  <!-- Materialize icons & CSS from CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" href="/css/main.css" rel="stylesheet">
+  <style>
+    /* Custom Styles for Responsive Design */
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .nav-wrapper a {
+      font-size: 1.5rem;
+      color: #000;
+    }
+    .sessions {
+      margin-top: 20px;
+    }
+    .session {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .session img {
+      max-width: 100px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .session-details {
+      flex: 1;
+      padding: 0 15px;
+    }
+    .session-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .session-leader, .session-location {
+      display: block;
+      font-size: 0.9rem;
+      color: #757575;
+    }
+    .add-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+    }
+    .add-btn i {
+      font-size: 36px;
+      line-height: 80px;
+    }
+    .side-form {
+      max-width: 400px;
+      width: 90%;
+    }
+    .empty-template {
+      text-align: center;
+      margin-top: 50px;
+      color: #757575;
+      font-size: 1.2rem;
+    }
+    @media (max-width: 768px) {
+      .nav-wrapper a {
+        font-size: 1.2rem;
+      }
+      .session {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .session img {
+        margin-bottom: 10px;
+      }
+      .add-btn {
+        bottom: 15px;
+        right: 15px;
+      }
+    }
+    @media (max-width: 480px) {
+      .session-title {
+        font-size: 1rem;
+      }
+      .session-leader, .session-location {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body class="grey lighten-4">
+  <!-- Top Nav -->
+  <nav class="z-depth-0">
+    <div class="nav-wrapper container">
+      <a href="/">Feedback<span>Guru</span></a>
+      <span class="right grey-text text-darken-1">
+        <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+      </span>
+    </div>
+  </nav>
+
+  <!-- Side Nav -->
+  <ul id="side-menu" class="sidenav side-menu">
+    <li><a class="subheader">FEEDBACKGURU</a></li>
+    <li><a href="/" class="waves-effect">Sessions</a></li>
+    <li><a href="/pages/about.html" class="waves-effect">Feedback</a></li>
+  </ul>
+
+  <!-- Sessions -->
+  <div id="session-list" class="sessions container grey-text text-darken-1"></div>
+
+  <!-- Add Button -->
+  <div class="center"  id="addSession">
+    <a class="btn-floating btn-large add-btn sidenav-trigger" data-target="side-form">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+
+  <!-- Add Session Side Nav -->
+  <div id="side-form" class="sidenav side-form">
+    <form class="add-session container section">
+      <h6>New Session</h6>
+      <div class="divider"></div>
+      <div class="input-field">
+        <input placeholder="e.g. C#, JavaScript..." id="title" type="text" class="validate">
+        <label for="title">Title</label>
+      </div>
+      <div class="input-field">
+        <input placeholder="e.g. Madhan Kumar T..." id="Presenter" type="text" class="validate">
+        <label for="Presenter">Presenter</label>
+      </div>
+      <div class="input-field">
+        <input placeholder="e.g. Taj Mahal, Hawa Mahal..." id="Location" type="text" class="validate">
+        <label for="Location">Location</label>
+      </div>
+      <div class="input-field">
+        <input placeholder="Date" id="SessionDate" type="text" class="validate">
+        <label for="SessionDate">Session Date</label>
+      </div>
+      <div class="input-field center">
+        <button class="btn-small" type="submit">Add</button>
+      </div>
+    </form>
+  </div>
+  <div id="feedback-card" class="card-panel feedback white row" style="display: none;">
+    <div class="row bottomZero">
+      <div class="col s12">
+        <div class="center top20">
+          <!-- Feedback Sections -->
+          <div class="feedback-section" data-category="Communication">
+            <div class="card feedback-card horizontal">
+              <div class="card-stacked">
+                <div class="card-content feedback-header">
+                  <p>Communication</p>
+                </div>
+                <div class="card-action stars">
+                  <!-- Stars will be rendered dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-section" data-category="Technology">
+            <div class="card feedback-card horizontal">
+              <div class="card-stacked">
+                <div class="card-content feedback-header">
+                  <p>Technology</p>
+                </div>
+                <div class="card-action stars"></div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-section" data-category="Presentation">
+            <div class="card feedback-card horizontal">
+              <div class="card-stacked">
+                <div class="card-content feedback-header">
+                  <p>Presentation</p>
+                </div>
+                <div class="card-action stars"></div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-section" data-category="Interactive">
+            <div class="card feedback-card horizontal">
+              <div class="card-stacked">
+                <div class="card-content feedback-header">
+                  <p>Interactive</p>
+                </div>
+                <div class="card-action stars"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row bottomZero">
+      <form id="feedback-form" class="col s12" >
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" type="text" class="validate">
+            <label for="name">Your Name (optional)</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">comment</i>
+            <textarea id="comment" class="materialize-textarea"></textarea>
+            <label for="comment">Comments</label>
+          </div>
+        </div>
+        <div class="right">
+          <button class="btn-floating  btn-large  pulse submit-btn" id="addSession" type="submit">
+            <i class="material-icons submit-btn-icon">sentiment_very_satisfied</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- Firebase and Materialize JS -->
+  <!-- <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBZkDG7c2-X2hcHVom6fR3OE20H4fvxD1M",
+      authDomain: "feedbackguru-28cd3.firebaseapp.com",
+      projectId: "feedbackguru-28cd3",
+      storageBucket: "feedbackguru-28cd3.firebasestorage.app",
+      messagingSenderId: "851289945198",
+      appId: "1:851289945198:web:922648f3f4016561e9227f",
+      databaseURL : "https://feedbackguru-28cd3-default-rtdb.europe-west1.firebasedatabase.app/"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const sessionList = document.getElementById('session-list');
+      const feedbackCard = document.getElementById('feedback-card');
+      const feedbackForm = document.getElementById('feedback-form');
+
+      // Initialize Sidenav
+      const sideNavs = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(sideNavs);
+
+      // Fetch sessions from Firebase
+      const sessionsRef = ref(db, 'sessions');
+      onValue(sessionsRef, (snapshot) => {
+        sessionList.innerHTML = ''; // Clear the list
+        const data = snapshot.val();
+
+        if (!data) {
+          sessionList.innerHTML = '<div class="empty-template">No sessions available. Add a new session!</div>';
+          return;
+        }
+
+        Object.keys(data).forEach((key) => {
+          const session = data[key];
+          console.log(session);
+          sessionList.innerHTML += `
+            <div class="card-panel session white row" data-id="${key}" click="">
+              <img src="/img/guru.png" alt="session thumb">
+              <div class="session-details">
+                <div class="session-title">${session.title}</div>
+                <span class="session-leader">${session.presenter}</span>
+                <span class="session-location">${session.location} at ${session.date}</span>
+              </div>
+            </div>
+          `;
+        });
+        // Show feedback card for a session
+        document.querySelectorAll('.session').forEach(session => {
+        session.addEventListener('click', () => {
+          feedbackCard.style.display = 'block';
+          sessionList.style.display = 'none';
+          const sessionId = session.dataset.id; // Assuming each session has a data-id attribute
+          feedbackCard.dataset.sessionId = sessionId;
+          });
+        });
+      });
+      // Add session to Firebase
+      const addSessionForm = document.querySelector('.add-session');
+      addSessionForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const newSession = {
+          id: crypto.randomUUID(),
+          title: document.getElementById('title').value,
+          presenter: document.getElementById('Presenter').value,
+          location: document.getElementById('Location').value,
+          date: document.getElementById('SessionDate').value,
+          isActive :true
+        };
+
+        const newSessionRef = push(ref(db, 'sessions'));
+        set(newSessionRef, newSession).then(() => {
+          alert('Session added successfully!');
+          addSessionForm.reset();
+        }).catch((error) => {
+          alert('Failed to add session');
+          console.error(error);
+        });
+      });
+
+
+  // Ratings for each category
+  const feedbackRatings = {
+    Communication: 0,
+    Technology: 0,
+    Presentation: 0,
+    Interactive: 0
+  };
+
+  // Function to render stars
+  function renderStars(category, rating) {
+    const starContainer = document.querySelector(`.feedback-section[data-category="${category}"] .stars`);
+    starContainer.innerHTML = ''; // Clear existing stars
+    for (let i = 1; i <= 5; i++) {
+      const star = document.createElement('img');
+      star.src = i <= rating ? '/img/star.png' : '/img/star-no.png';
+      star.width = 35;
+      star.height = 35;
+      star.className = 'pulse';
+      star.addEventListener('click', () => {
+        feedbackRatings[category] = i;
+        renderStars(category, i);
+      });
+      starContainer.appendChild(star);
+    }
+  }
+
+  // Initialize stars
+  Object.keys(feedbackRatings).forEach(category => {
+    renderStars(category, feedbackRatings[category]);
+  });
+
+  // Submit feedback
+  feedbackForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const sessionId = feedbackCard.dataset.sessionId;
+    const name = document.getElementById('name').value;
+    const comment = document.getElementById('comment').value;
+
+    // Save feedback to Firebase
+    const feedback = {
+      ratings: feedbackRatings,
+      name: name || null,
+      comment: comment || null
+    };
+
+    const feedbackRef = ref(db, `sessions/${sessionId}/feedback`);
+    const newFeedbackRef = push(feedbackRef);
+    set(newFeedbackRef, feedback)
+      .then(() => {
+        alert('Feedback submitted successfully!');
+        feedbackForm.reset();
+        feedbackCard.style.display = 'none';
+        Object.keys(feedbackRatings).forEach(category => {
+          feedbackRatings[category] = 0;
+          renderStars(category, 0);
+        });
+      })
+      .catch((error) => {
+        console.error('Failed to submit feedback:', error);
+        alert('Error submitting feedback.');
+      });
+    });
+
+
+    });
+  </script> -->
+  <script type="module" src="/js/main.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
