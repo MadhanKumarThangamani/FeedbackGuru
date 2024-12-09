@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       starContainer.innerHTML = ""; // Clear existing stars
       for (let i = 1; i <= 5; i++) {
         const star = document.createElement("img");
-        star.src = i <= rating ? "/img/star.png" : "/img/star-no.png";
+        star.src = i <= rating ? "img/star.png" : "img/star-no.png";
         star.width = 35;
         star.height = 35;
         star.className = "pulse";

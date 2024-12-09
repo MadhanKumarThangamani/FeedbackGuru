@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       sessionList.innerHTML += `
         <div class="card-panel session white row cursor" data-id="${key}">
-          <img src="/img/guru.png" alt="session thumb">
+          <img src="img/guru.png" alt="session thumb">
           <div class="session-details">
             <div class="session-title">${session.title}</div>
             <span class="session-leader">${session.presenter}</span>
