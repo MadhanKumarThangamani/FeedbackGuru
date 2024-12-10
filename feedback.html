@@ -1,116 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Feedback Guru</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" href="css/main.css" rel="stylesheet">
-  <link type="text/css" href="css/snow.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Feedback Guru</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" href="css/main.css" rel="stylesheet">
+    <link type="text/css" href="css/snow.css" rel="stylesheet">
+    <link type="text/css" href="css/loader.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Doto:wght@100..900&family=Fleur+De+Leah&family=Grenze+Gotisch:wght@100..900&family=UnifrakturMaguntia&family=Bungee+Shade&family=Oi&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<div id="submitted-card" class="submittedForm hide">
-  <!-- <div class="logo-1">
-    <img src="/img/guru.png" class="img-x-small" alt="session thumb">
-    <span class="primary" >Feedback </span><span class="secondary" >Guru</span>
-  </div> -->
-  <img src="img/submitted.png" class="img" alt="session thumb">
-</div>
-  <div class="feedback-main">
-  <div id="feedback-card" class="shadow shadow-5 card-panel feedback white row hide">
-    <div class="logo">
-      <img src="img/guru.png" class="img-x-small" alt="session thumb">
-      <span class="primary" >Feedback </span><span class="secondary" >Guru</span>
-    </div>
-    <div id="current-session">
-      <div class="card-panel session " data-id="${key}">
-        <img src="img/default-1.png" class="img-small" alt="session thumb">
-        <div class="session-details">
-          <div id="sessionTitle" class="session-title"></div>
-          <span id="sessionPresenter" class="session-leader"></span>
-          <span id="sessionLocation" class="session-location"></span>
-        </div>
-      </div>
-    </div>
+    <canvas id="canvas"></canvas>
 
-    <div class="row bottomZero">
-      <div class="col s12">
-        <div class="center top20">
-          <!-- Feedback Sections -->
-          <div class="feedback-section" data-category="Communication">
-            <div class="card feedback-card horizontal shadow shadow-2">
-              <div class="card-stacked">
-                <div class="card-content feedback-header">
-                  <p>Communication</p>
-                </div>
-                <div class="card-action stars">
-                  <!-- Stars will be rendered dynamically -->
-                </div>
-              </div>
+    <div class="feedback-main">
+        <div id="feedback-card" class="shadow shadow-5 card-panel feedback row">
+            <div class="logo">
+                <img src="img/guru.png" class="img-x-small" alt="session thumb">
+                <span class="primary">Feedback </span><span class="secondary">Guru</span>
             </div>
-          </div>
-          <div class="feedback-section" data-category="Technology">
-            <div class="card feedback-card horizontal shadow shadow-2">
-              <div class="card-stacked">
-                <div class="card-content feedback-header">
-                  <p>Technology</p>
+            <div id="current-session">
+                <div class="card-panel session " data-id="${key}">
+                    <img src="img/default-1.png" class="img-small" alt="session thumb">
+                    <div class="session-details">
+                        <div id="sessionTitle" class="session-title orbitron"></div>
+                        <span id="sessionPresenter" class="session-leader grenze-gotisch"></span>
+                        <span id="sessionLocation" class="session-location doto"></span>
+                    </div>
                 </div>
-                <div class="card-action stars"></div>
-              </div>
             </div>
-          </div>
-          <div class="feedback-section" data-category="Presentation">
-            <div class="card feedback-card horizontal shadow shadow-2">
-              <div class="card-stacked">
-                <div class="card-content feedback-header">
-                  <p>Presentation</p>
-                </div>
-                <div class="card-action stars"></div>
-              </div>
-            </div>
-          </div>
-          <div class="feedback-section" data-category="Interactive">
-            <div class="card feedback-card horizontal shadow shadow-2">
-              <div class="card-stacked">
-                <div class="card-content feedback-header">
-                  <p>Interactive</p>
-                </div>
-                <div class="card-action stars"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row bottomZero">
-      <form id="feedback-form" class="col s12" >
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="name" type="text" class="validate">
-            <label for="name">Your Name (optional)</label>
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix">comment</i>
-            <textarea id="comment" class="materialize-textarea"></textarea>
-            <label for="comment">Comments</label>
-          </div>
-        </div>
-        <div class="right">
-          <button class="btn-floating  btn-large  pulse submit-btn" id="addSession" type="submit">
-            <i class="material-icons submit-btn-icon">sentiment_very_satisfied</i>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <canvas id="canvas"></canvas>
+            <div class="row bottomZero">
+                <form id="feedback-form" class="col s12 hide">
+                    <div class="row" style="overflow: hidden;">
+                        <div class="input-field col s12 animate__animated animate__fadeInLeft">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="name" type="text" class="validate">
+                            <label for="name">Name (optional)</label>
+                        </div>
+                        <div class="input-field col s12 animate__animated animate__fadeInRight">
+                            <i class="material-icons prefix">comment</i>
+                            <textarea rows="3" id="comment" class="materialize-textarea"></textarea>
+                            <label for="comment">Comments</label>
+                        </div>
+                        <div class="input-field col s12 center animate__animated animate__fadeInUp" style="margin-top: 10px;">
+                            <!-- Feedback Sections -->
+                            <div class="feedback-section" data-category="Rating">
+                                <div class="card-content feedback-header">
+                                    <p>Rating</p>
+                                </div>
+                                <div class="card-action stars ">
+                                    <!-- Stars will be rendered dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <button class="floater shadow-5" id="addSession" type="submit">
+                                <img src="img/plane.png" class="img-x-small">
+                                <i style="vertical-align: super; padding-left: 15px;">Send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
-  <script type="module" src="js/feedback.js" ></script>
-  <script src="js/snow.js"> </script>
-  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                <div id="submitted-card" style="overflow: hidden;" class="bungee-shade submittedForm hide animate__animated animate__flipInX">
+                    <h1 class="secondary-1" id="english-message">Thank you for sharing your
+            <span class="primary"> valuable feedback!</span>
+          </h1>
+
+                </div>
+                <div id="loader-wrapper" style="overflow: hidden;" class="loader-wrapper">
+                    <div class='loader'>
+                        <span>
+            <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        </span>
+                        <div class='base'>
+                            <span></span>
+                            <div class='face'></div>
+                        </div>
+                    </div>
+                    <div class='longfazers'>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomZero hide">
+                <div class="col s12">
+                    <div class="center">
+                        <!-- Feedback Sections -->
+                        <div class="feedback-section hide" data-category="Communication">
+                            <div class="card feedback-card horizontal shadow shadow-2">
+                                <div class="card-stacked">
+                                    <div class="card-content feedback-header">
+                                        <p>Communication</p>
+                                    </div>
+                                    <div class="card-action stars">
+                                        <!-- Stars will be rendered dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feedback-section hide" data-category="Technology">
+                            <div class="card feedback-card horizontal shadow shadow-2">
+                                <div class="card-stacked">
+                                    <div class="card-content feedback-header">
+                                        <p>Technology</p>
+                                    </div>
+                                    <div class="card-action stars"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feedback-section hide" data-category="Presentation">
+                            <div class="card feedback-card horizontal shadow shadow-2">
+                                <div class="card-stacked">
+                                    <div class="card-content feedback-header">
+                                        <p>Presentation</p>
+                                    </div>
+                                    <div class="card-action stars"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feedback-section hide" data-category="Interactive">
+                            <div class="card feedback-card horizontal shadow shadow-2">
+                                <div class="card-stacked">
+                                    <div class="card-content feedback-header">
+                                        <p>Interactive</p>
+                                    </div>
+                                    <div class="card-action stars"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script type="module" src="js/feedback.js"></script>
+        <script src="js/snow.js">
+        </script>
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
+
 </html>

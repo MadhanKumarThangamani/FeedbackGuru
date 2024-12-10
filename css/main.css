@@ -19,16 +19,11 @@ html, body {
   height: 100%; /* Makes sure html and body elements cover 100% of the viewport height */
 }
   body {
-   background-color:rgb(208 208 208) !important;
-   background-image:     url('../img/snow.svg') ; 
-    background-size: 500px;
-   background-position: right bottom;
-   background-repeat: no-repeat; 
-   background-attachment: fixed;
-    /* background-image: url('../img/bg.jpg') ; */
-   background-size: 500px;
-   background-position: right bottom;
-   background-repeat: no-repeat;
+
+   background: #bdc3c7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
    margin: 0;
    padding: 0;
    box-sizing: border-box;
@@ -49,6 +44,29 @@ html, body {
   z-index: -1;
   background: var(--secondary);
 }
+
+.floater{
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: -34px;
+  right: 0px;
+  border-radius: 0 0 15px 15px;
+  padding: 5px 50px;
+  z-index: 0;
+  color: var(--third);
+  background: var(--primary);
+  border: 0px;
+  cursor: pointer;
+}
+
+.floater:hover{
+  z-index: 1;
+  /* background: var(--fourth); */
+  color: var(--secondary);
+}
+
+
 .primary{
 
     color: var(--primary);
@@ -57,7 +75,10 @@ html, body {
     color: #035907;
     padding-left: 2px;
 }
-
+.secondary-1{
+  color: var(--secondary);
+  font-weight: bold;
+}
 /* layout styles */
 nav{
   background: var(--primary);
@@ -98,10 +119,17 @@ nav .sidenav-trigger{
 }
 
 .card-panel.feedback{
-  border-radius: 8px;
+  /* border-radius: 8px; */
+  border-radius: 8px 8px 0 8px;
   padding: 0px;
   padding-bottom: 20px;
   margin-top: 1rem;
+  background-image:     url('../img/snow.svg') ; 
+  background-size: 250px;
+  background-position: right bottom;
+  background-repeat: no-repeat; 
+  min-height: 550px;
+  width: 100%;
 }
 
 .card-panel.attendance{
@@ -129,7 +157,7 @@ nav .sidenav-trigger{
 }
 .session-title{
   font-weight: bold;
-  font-size: 0.9em; 
+  font-size: 1.2em; 
   color: var(--details)!important;
 }
 .attendance-title
@@ -143,12 +171,33 @@ nav .sidenav-trigger{
   color: var(--details)!important;
 }
 .session-location{
-  font-size: 0.6em;
-  color: var(--fifth) !important;
-  font-weight: 400;
-}
-.session-leader{
   font-size: 0.8em;
+  color: var(--third) !important;
+  font-weight: 400;
+  float: right;
+  margin-top: 20px;
+}
+.orbitron {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.doto {
+  font-family: "Doto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "ROND" 0;
+}
+
+.grenze-gotisch {
+  font-family: "Grenze Gotisch", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.session-leader{
+  font-size: 1em;
   color: var(--third);
   font-weight: 500;
 }
@@ -286,6 +335,16 @@ form .input-field{
 }
 
 
+.bungee-shade {
+  font-family: "Bungee Shade", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.oi-regular {
+  font-family: "Oi", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .submittedForm{
   text-align: center;
@@ -300,6 +359,11 @@ form .input-field{
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 1;
   transform: scale(1);
+  padding: 10px;
+  margin: 0;
+  color: var(--primary);
+
+
   .fi{
     color: var(--primary);
     margin: 0 !important;

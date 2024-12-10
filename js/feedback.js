@@ -3,8 +3,9 @@ import { db, saveSession, getSessions, saveFeedback } from "./dbService.js";
 document.addEventListener("DOMContentLoaded", function () {
   const feedbackCard = document.getElementById("feedback-card");
   const feedbackForm = document.getElementById("feedback-form");
-  const addSessionFloatButton = document.getElementById("addSession");
   const submittedCard = document.getElementById("submitted-card");
+  const loaderWrapper = document.getElementById("loader-wrapper");
+  
 
   // Initialize Sidenav
   const sideNavs = document.querySelectorAll(".sidenav");
@@ -13,23 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get session ID from query string
   const urlParams = new URLSearchParams(window.location.search);
   const sessionIdFromQuery = urlParams.get("session");
-
+  loaderWrapper.classList.remove('hide');
   function showSubmitted(){
     submittedCard.classList.remove('hide');
-    feedbackCard.classList.add('hide');
+    feedbackForm.classList.add('hide');
+    loaderWrapper.classList.add('hide');
   }
   function showFeedback(){
     submittedCard.classList.add('hide');
-    feedbackCard.classList.remove('hide');
+    feedbackForm.classList.remove('hide');
+    loaderWrapper.classList.add('hide');
   }
   // Fetch sessions
   getSessions(db, (data) => {
     if (sessionIdFromQuery) {
-      const isSubmitted = localStorage.getItem(sessionIdFromQuery) == '1';
-      if(isSubmitted){
-        showSubmitted();
-        return;
-      }
       // If session ID is provided in query string, load feedback directly
       const session = data[sessionIdFromQuery];
       if (session) {
@@ -41,22 +39,28 @@ document.addEventListener("DOMContentLoaded", function () {
       sessionPresenter.innerHTML = session.presenter;      
       sessionLocation.innerHTML = session.date;
 
+      const isSubmitted = localStorage.getItem(sessionIdFromQuery) == '1';
+      if(isSubmitted){
+        showSubmitted();
+        return;
+      }
+
       showFeedback();
        feedbackCard.dataset.sessionId = sessionIdFromQuery;
       } else {
         M.toast({ html: "Invalid session!", classes: "red" });
       }
-    } else {
-      showSession();
     }
   });
+  
 
     // Ratings for each category
     const feedbackRatings = {
-      Communication: 0,
-      Technology: 0,
-      Presentation: 0,
-      Interactive: 0,
+      Rating: 0,
+      // Communication: 0,
+      // Technology: 0,
+      // Presentation: 0,
+      // Interactive: 0,
     };
 
     // Function to render stars
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         star.src = i <= rating ? "img/star.png" : "img/star-no.png";
         star.width = 35;
         star.height = 35;
-        star.className = "pulse";
+        star.className = i <= rating ? "stars_x animate__animated animate__heartBeat" : "stars_x";
         star.addEventListener("click", () => {
           feedbackRatings[category] = i;
           renderStars(category, i);
@@ -96,6 +100,30 @@ document.addEventListener("DOMContentLoaded", function () {
         M.toast({ html: "Invalid session!", classes: "red" });
         return;
       }
+
+      const stars = document.querySelectorAll('.stars_x'); // Get all elements with the class `.stars_x`
+
+      // Loop through each star element in the collection
+      stars.forEach((star) => {
+        // Remove existing animation classes to reset animation state
+        star.classList.remove('animate__animated', 'animate__tada');
+      });
+      
+      // Check if the rating is less than or equal to 0
+      if (feedbackRatings.Rating <= 0) {
+        M.toast({
+          html: 'Please rate and submit. At least one star should be given!',
+          classes: 'red',
+        });
+      
+        // Add animation classes to each star to provide feedback
+        stars.forEach((star) => {
+          star.classList.add('animate__animated', 'animate__tada');
+        });
+      
+        return; // Exit the function early if the rating is invalid
+      }
+      
 
       const feedback = {
         ratings: feedbackRatings,
